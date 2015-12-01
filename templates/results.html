@@ -3,6 +3,9 @@
 <head>
 <title>Giggle Search</title>
 <link rel="stylesheet" type="text/css" href="static/style.css">
+<script src="static/jquery/jquery.js"></script>
+<script src="static/jquery/jRating.jquery.js"></script>
+<link rel="stylesheet" href="static/jquery/jRating.jquery.css" type="text/css" />
 </head>
 <body>
 <div id="content">
@@ -17,17 +20,26 @@
 <div id="suggestion">
 {% for s in suggestions %}
 {{s}}
-<div class="rating">
-<span>&#9734; </span><span>&#9734; </span><span>&#9734; </span><span>&#9734; </span><span>&#9734; </span>
+<div class="rating{{loop.index0}}">
+  Rating
 </div>
 <br/>
 {% endfor %}
-
+<div class="basic"></div>
 </div>
 </td>
 </tr>
 </table>
 </form>
 </div>
+<script>
+  $(document).ready(function() {
+    /*
+    {% for s in suggestions %}
+    $(".rating{{loop.index0}}").jRating();
+    {% endfor %}*/
+    alert('test');
+    $(".basic").jRating();
+  });
 </body>
 </html> 
