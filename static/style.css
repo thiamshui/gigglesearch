@@ -1,0 +1,57 @@
+body{
+	background-color: white;
+}
+
+#content{
+	margin:0 auto;
+	margin-top:150px;
+	width:50%;
+	text-align: center;
+	
+}
+
+#search{
+	width:300px;
+	height: 35px;
+	font-size:10pt;
+	background-color:#efefef;
+	border:0;
+}
+
+#searchbtn{
+	width: 100px;
+	height: 35px;
+	background-color: #3369E8;
+	color: white;
+	font-size:11pt;
+	border: 0;
+}
+
+#suggestion{
+	margin-top:20px;
+	margin-left:10px;
+	width:300px;
+	color: #666;
+	text-align: left;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:10pt;
+
+}
+
+/* https://css-tricks.com/star-ratings/*/
+
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  color:#EEB211;
+}
+.rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+}
