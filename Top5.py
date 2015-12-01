@@ -43,10 +43,7 @@ def find5(word,C):
 		elif edit_dist < edit_dist5[4]:
 			edit_dist5= edit_dist5[:4] + [edit_dist]
 			top5= top5[:4] + [c]
-        return str(top5)
-	print(top5)
-
-
+        return top5
 
 #if __name__=="__main__":
     #from sys import argv

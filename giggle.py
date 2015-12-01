@@ -25,9 +25,9 @@ def teardown_request(exception):
   if db is not None:
     db.close()
 
-@app.route('/search', methods=['GET'])
+@app.route('/search', methods=['POST'])
 def search():
-  return find5( request.args.get('q'), C )
+  return str( find5( request.form.get('q'), C ) )
 
 @app.route('/')
 def index():
