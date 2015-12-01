@@ -27,7 +27,8 @@ def teardown_request(exception):
 
 @app.route('/search', methods=['POST'])
 def search():
-  return str( find5( request.form.get('q'), C ) )
+  results = find5( request.form.get('q'), C )
+  return render_template('results.html', suggestions=results )
 
 @app.route('/')
 def index():
