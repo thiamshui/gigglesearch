@@ -4,30 +4,30 @@ import levenshtein
 def corpora():
   C = {}
   with open("corpora","r") as myfile:
-    for line in myfile:
-	words = line[:-1]
-	C[words]= 0
-  return C
+	for line in myfile:
+		words = line[:-1]
+		C[words]= 0
 
 #opens the animal list and stores the words in a dictionary
-#D = {}
-#with open("Animal List","r") as myfile:
-#	for line in myfile:
-#		words = line[:-1]
-#		D[words.lower()]= 0
+  D = {}
+  with open("Animal-List","r") as myfile:
+	for line in myfile:
+		words = line[:-1]
+		D[words.lower()]= 0
 
 #opens list of collocations
-Collocs = {}
-with open("collocations","r") as myfile:
+  Collocs = {}
+  with open("collocations","r") as myfile:
 	for line in myfile:
 		elements = line[:-1].split()
 		words = elements[0] + " " + elements[1]
-		print(words)
+		#print(words)
 		Collocs[words]= int(elements[2])
+  return C,D,Collocs
 
 #find5 finds the top 5 edit distances of a word in a corpus. it returns a list of the top 5 closest words in the corpus. 
 # The variables are the word (string format) for which we are looking similar words for and the corpus in form of a dictionary with the words as keys.
-def find5(word,corpus):
+def find5(word,C):
 	minimum = len(word)
 	top5 = ["","","","",""]
 	edit_dist5 = [minimum]*5
@@ -56,9 +56,9 @@ def find5(word,corpus):
 			edit_dist5= edit_dist5[:4] + [edit_dist]
 			top5= top5[:4] + [c]
 	return top5
-	print(top5)
+	#print(top5)
 
-def find10(word,corpus):
+def find10(word,C):
 	minimum = len(word)
 	top10 = ["","","","","","","","","",""]
 	edit_dist10 = [minimum]*10
@@ -67,12 +67,12 @@ def find10(word,corpus):
 	for c in C:
 		edit_dist = levenshtein.levenshtein(word,c)
 		#print(edit_dist)
-		if edit_dist > edit_dist10[4]:
+		if edit_dist > edit_dist10[9]:
 			continue
 		elif edit_dist == 0:
 			continue
 		elif edit_dist < edit_dist10[0]:
-			edit_dist5= [edit_dist] + edit_dist10[:9]
+			edit_dist10= [edit_dist] + edit_dist10[:9]
 			top10= [c] + top10[:9]
 		elif edit_dist < edit_dist10[1]:
 			edit_dist10= [edit_dist10[0]] + [edit_dist] + edit_dist10[1:9]
@@ -101,10 +101,10 @@ def find10(word,corpus):
 		elif edit_dist < edit_dist10[9]:
 			edit_dist10= edit_dist10[:-1] + [edit_dist]
 			top10= top10[:-1] + [c]
-	return top10
 	print(top10)
+	return top10
 
-def choosecolloc5(list1,list2):
+def choosecolloc5(list1,list2,Collocs):
 	possiblecollocs = []
 	for word1 in list1:
 		for word2 in list2:
@@ -114,9 +114,14 @@ def choosecolloc5(list1,list2):
 				possiblecollocs += [(collocvalue,collocwords)]
 			else:
 				possiblecollocs += [(0,collocwords)]
+	#print possiblecollocs
 
 	sortedcollocs = sorted(possiblecollocs, key=lambda tup: tup[0])
-	return sortedcollocs[:5]
+	#print sortedcollocs
+	collocs5 = []
+	for (a,b) in sortedcollocs[:5]:
+		collocs5 += [b]
+	return collocs5
 
 #create 5 takes the words from dictionary D (here animal list) to make
 def create5(name):
@@ -139,8 +144,8 @@ if __name__=="__main__":
     	words = argv[1].split(" ",1)
     	list1 =  find10(words[0],C)
     	list2 =  find10(words[1],C)
-    	print(list1)
-    	print(list2)
+    	#print(list1)
+    	#print(list2)
     	print(choosecolloc5(list1,list2))
 
 

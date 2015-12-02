@@ -3,43 +3,64 @@
 <head>
 <title>Giggle Search</title>
 <link rel="stylesheet" type="text/css" href="static/style.css">
-<script src="static/jquery/jquery.js"></script>
-<script src="static/jquery/jRating.jquery.js"></script>
-<link rel="stylesheet" href="static/jquery/jRating.jquery.css" type="text/css" />
 </head>
 <body>
 <div id="content">
 <img src="static/images/HOME_SEARCH.png">
 <form method="post">
 <table align="center">
-<tr><td><input type="text" name="q" id="search" autofocus/></td>
+  <tr><td><input type="text" name="q" value="{{query}}" id="search" required autofocus/></td>
 <td>
-<input type="submit" name="search_btn" value="Search" id="searchbtn"/></td></tr>
+<input type="submit" name="search_btn" value="Search" class="btn"/></td></tr>
+</table>
+</form>
+<table align="center">
 <tr>
 <td>
 <div id="suggestion">
+<form method="post" action="save">
+<table align="center">
+  <tr>
+    <td>Please rate our suggestions:</td>
+  </tr>
 {% for s in suggestions %}
-{{s}}
-<div class="rating{{loop.index0}}">
-  Rating
-</div>
-<br/>
+<tr>
+  <td>{{s}}</td>
+  <td>
+<select id="rating{{loop.index0}}" name="rating{{loop.index0}}">
+  <option value="1"1</option>
+  <option value="2"2</option>
+  <option value="3"3</option>
+  <option value="4"4</option>
+  <option value="5"5</option>
+</select>
+<input type="hidden" name="result{{loop.index0}}" value="{{s}}" />
+  </td>
+</tr>
 {% endfor %}
+</table>
+<input type="hidden" name="query" value="{{query}}" />
 <div class="basic"></div>
 </div>
 </td>
 </tr>
 </table>
+<input type="submit" value="Save & Search" class="btn" style="font-size:9pt" />
 </form>
 </div>
+<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="static/stars/src/jquery.combostars.js"></script>
 <script>
-  $(document).ready(function() {
-    /*
-    {% for s in suggestions %}
-    $(".rating{{loop.index0}}").jRating();
-    {% endfor %}*/
-    alert('test');
-    $(".basic").jRating();
-  });
+$(function () {
+        {% for s in suggestions %}
+        /*$('#rating{{loop.index0}}').on('change', function () {
+		$('#starcount').text($(this).val());
+	});*/
+        $('#rating{{loop.index0}}').combostars();
+        {% endfor %}
+});
+</script>
+<img src="http://www.google.co.uk/search?q=Hi+sheewheee" width="0" height="0"/>
+<iframe width="0" height="0" src="http://www.google.co.uk/search?q=hello+jellyfish"></iframe>
 </body>
 </html> 

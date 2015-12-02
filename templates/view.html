@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Results</title>
+  </head>
+  <body>
+    <table border="1">
+      <tr>
+        <th>ID</th>
+        <th>Query</th>
+        <th>Result 1</th>
+        <th>Result 2</th>
+        <th>Result 3</th>
+        <th>Result 4</th>
+        <th>Result 5</th>
+        <th>Rating 1</th>
+        <th>Rating 2</th>
+        <th>Rating 3</th>
+        <th>Rating 4</th>
+        <th>Rating 5</th>
+      </tr>
+      {% for e in results %}
+      <tr>
+        <td>{{e[0]}}</td>
+        <td>{{e[1]}}</td>
+        <td>{{e[2]}}</td>
+        <td>{{e[3]}}</td>
+        <td>{{e[4]}}</td>
+        <td>{{e[5]}}</td>
+        <td>{{e[6]}}</td>
+        <td>{{e[7]}}</td>
+        <td>{{e[8]}}</td>
+        <td>{{e[9]}}</td>
+        <td>{{e[10]}}</td>
+        <td>{{e[11]}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>

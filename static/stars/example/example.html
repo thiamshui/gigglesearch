@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ComboStars Example</title>
+	</head>
+	<body>
+		<h1>ComboStars Example</h1>
+		<p>
+			This is an example of ComboStars, a jQuery plugin that turns combo boxes into star rating widgets.
+		</p>
+		<p>
+			Here is my select:
+			<select id="combostar">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+			</select>
+		</p>
+		<p>
+			Current rating: <span id="starcount">0</span> stars
+		</p>
+		<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+		<script src="../src/jquery.combostars.js"></script>
+		<script>
+			$(function () {
+				$('#combostar').on('change', function () {
+					$('#starcount').text($(this).val());
+				});
+				$('#combostar').combostars();
+			});
+		</script>
+	</body>
+</html>
